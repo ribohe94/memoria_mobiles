@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">JuegoMemoria</string>
+    <string name="app_name">Memoria_Moviles</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_jugar">Jugar</string>
+    <string name="title_activity_multi_jugador">MultiJugador</string>
+    <string name="title_activity_opciones">Opciones</string>
+    <string name="title_activity_puntuaciones">Puntuaciones</string>
+    <string name="Nombre">Nombre</string>
 </resources>

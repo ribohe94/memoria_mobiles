@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.riccardo.juegomemoria">
+    package="com.example.carlos.memoria_moviles">
 
     <application
         android:allowBackup="true"
@@ -8,13 +8,32 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MenuPrincipal"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MultiJugador"
+            android:label="@string/title_activity_multi_jugador"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Jugar"
+            android:label="@string/title_activity_jugar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Opciones"
+            android:label="@string/title_activity_opciones"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Puntuaciones"
+            android:label="@string/title_activity_puntuaciones"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
