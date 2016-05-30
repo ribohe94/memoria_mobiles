@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MenuPrincipal"
+            android:name=".Activities.MenuPrincipal"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,19 +21,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MultiJugador"
+            android:name=".Activities.MultiJugador"
             android:label="@string/title_activity_multi_jugador"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Jugar"
+            android:name=".Activities.ActividadJugar"
             android:label="@string/title_activity_jugar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Opciones"
+            android:name=".Activities.Opciones"
             android:label="@string/title_activity_opciones"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Puntuaciones"
+            android:name=".Activities.Puntuaciones"
             android:label="@string/title_activity_puntuaciones"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
