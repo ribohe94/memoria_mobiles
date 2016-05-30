@@ -1,9 +1,7 @@
-package com.example.carlos.memoria_moviles;
+package com.example.carlos.memoria_moviles.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.carlos.memoria_moviles.R;
 
 public class MenuPrincipal extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnJugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intento = new Intent(getApplicationContext(), Jugar.class);
+                Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
                 startActivity(intento);
             }
 
