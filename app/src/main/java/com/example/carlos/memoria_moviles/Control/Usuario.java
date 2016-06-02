@@ -1,4 +1,4 @@
-package com.example.carlos.memoria_moviles.Activities;
+package com.example.carlos.memoria_moviles.Control;
 
 
 import android.graphics.Bitmap;

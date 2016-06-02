@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.carlos.memoria_moviles.Control.Usuario;
 import com.example.carlos.memoria_moviles.R;
 
 public class Perfil extends AppCompatActivity {

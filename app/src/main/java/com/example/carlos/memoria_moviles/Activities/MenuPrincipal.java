@@ -28,7 +28,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnJugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
+                Intent intento = new Intent(getApplicationContext(), LevelSelector.class);
                 startActivity(intento);
             }
 
