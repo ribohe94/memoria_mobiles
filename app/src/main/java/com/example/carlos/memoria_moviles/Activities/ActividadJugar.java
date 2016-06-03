@@ -1,16 +1,21 @@
 package com.example.carlos.memoria_moviles.Activities;
 
+import android.annotation.TargetApi;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.Toast;
 
 import com.example.carlos.memoria_moviles.R;
 
 public class ActividadJugar extends AppCompatActivity {
-
+    private int cardId=0;
     AnimationDrawable animation;
 
     @Override
@@ -19,49 +24,122 @@ public class ActividadJugar extends AppCompatActivity {
         setContentView(R.layout.activity_jugar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        configurarClickListeners();
+        Bundle bundle = getIntent().getExtras();
+        int nivel=bundle.getInt("nivel");
+        switch(nivel){
+            case 1:{
+                crearNivel(2,2);
+                //animacion
+                break;
+            }
+            case 2:{
+                crearNivel(3,3);
+                break;
+            }
+            case 3:{
+                crearNivel(4,4);
+                break;
+            }
+            case 4:{
+                crearNivel(5,5);
+                break;
+            }
+            case 5:{
+                crearNivel(6,6);
+                break;
+            }
+            case 6:{
+                crearNivel(7,7);
+                break;
+            }
+            default:{
+                Mensaje("Error al seleccionar nivel");
+                break;
+            }
+
+        }
+        //configurarClickListeners();
 
     }
+    private void crearNivel(int TableRows, int TableCols) {
+        TableLayout table=(TableLayout) findViewById(R.id.ButtonTable);
+        for(int row=0;row<TableRows;row++){
+            TableRow newRow=new TableRow(this);
+            table.setLayoutParams(new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    1.0f));
+            table.addView(newRow);
+            for(int col=0;col<TableCols;col++){
+                Button newButton=new Button(this);
+                newButton.setLayoutParams(new TableRow.LayoutParams(
+                        TableLayout.LayoutParams.MATCH_PARENT,
+                        TableLayout.LayoutParams.MATCH_PARENT,
+                        1.0f));
+//                newButton.setId(Integer.parseInt("@+id/"+row+" "+col));
+                configurarCarta(newButton);
+                newRow.addView(newButton);
 
-    public void ajustarImagen() {
-        TableLayout tl = (TableLayout) findViewById(R.id.tableLayout01);
+            }
+        }
     }
 
-    public void configurarClickListeners() {
-        final ImageView btn01 = (ImageView) findViewById(R.id.imageButton01);
-        btn01.setBackgroundResource(R.drawable.animation);
-        final ImageView btn02 = (ImageView) findViewById(R.id.imageButton02);
-        btn02.setBackgroundResource(R.drawable.animation);
-        final ImageView btn03 = (ImageView) findViewById(R.id.imageButton03);
-        btn03.setBackgroundResource(R.drawable.animation);
-        final ImageView btn04 = (ImageView) findViewById(R.id.imageButton04);
-        btn04.setBackgroundResource(R.drawable.animation);
-        final ImageView btn05 = (ImageView) findViewById(R.id.imageButton05);
-        btn05.setBackgroundResource(R.drawable.animation);
-        final ImageView btn06 = (ImageView) findViewById(R.id.imageButton06);
-        btn06.setBackgroundResource(R.drawable.animation);
-        final ImageView btn07 = (ImageView) findViewById(R.id.imageButton07);
-        btn07.setBackgroundResource(R.drawable.animation);
-        final ImageView btn08 = (ImageView) findViewById(R.id.imageButton08);
-        btn08.setBackgroundResource(R.drawable.animation);
-        final ImageView btn09 = (ImageView) findViewById(R.id.imageButton09);
-        btn09.setBackgroundResource(R.drawable.animation);
-        final ImageView btn10 = (ImageView) findViewById(R.id.imageButton10);
-        btn10.setBackgroundResource(R.drawable.animation);
-        final ImageView btn11 = (ImageView) findViewById(R.id.imageButton11);
-        btn11.setBackgroundResource(R.drawable.animation);
-        final ImageView btn12 = (ImageView) findViewById(R.id.imageButton12);
-        btn12.setBackgroundResource(R.drawable.animation);
-        final ImageView btn13 = (ImageView) findViewById(R.id.imageButton13);
-        btn13.setBackgroundResource(R.drawable.animation);
-        final ImageView btn14 = (ImageView) findViewById(R.id.imageButton14);
-        btn14.setBackgroundResource(R.drawable.animation);
-        final ImageView btn15 = (ImageView) findViewById(R.id.imageButton15);
-        btn15.setBackgroundResource(R.drawable.animation);
-        final ImageView btn16 = (ImageView) findViewById(R.id.imageButton16);
-        btn16.setBackgroundResource(R.drawable.animation);
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private void configurarCarta(final Button newButton) {
+        newButton.setPadding(0,0,0,0);
+        newButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Mensaje(String.valueOf(newButton.getId()));
+            }
+        });
     }
+
+    public void Mensaje(String msg){
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+    };
 }
+
+
+//
+//    public void ajustarImagen() {
+//        TableLayout tl = (TableLayout) findViewById(R.id.ButtonTable);
+//    }
+//
+//    public void configurarClickListeners() {
+//        final ImageView btn01 = (ImageView) findViewById(R.id.imageButton01);
+//        btn01.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn02 = (ImageView) findViewById(R.id.imageButton02);
+//        btn02.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn03 = (ImageView) findViewById(R.id.imageButton03);
+//        btn03.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn04 = (ImageView) findViewById(R.id.imageButton04);
+//        btn04.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn05 = (ImageView) findViewById(R.id.imageButton05);
+//        btn05.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn06 = (ImageView) findViewById(R.id.imageButton06);
+//        btn06.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn07 = (ImageView) findViewById(R.id.imageButton07);
+//        btn07.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn08 = (ImageView) findViewById(R.id.imageButton08);
+//        btn08.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn09 = (ImageView) findViewById(R.id.imageButton09);
+//        btn09.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn10 = (ImageView) findViewById(R.id.imageButton10);
+//        btn10.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn11 = (ImageView) findViewById(R.id.imageButton11);
+//        btn11.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn12 = (ImageView) findViewById(R.id.imageButton12);
+//        btn12.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn13 = (ImageView) findViewById(R.id.imageButton13);
+//        btn13.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn14 = (ImageView) findViewById(R.id.imageButton14);
+//        btn14.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn15 = (ImageView) findViewById(R.id.imageButton15);
+//        btn15.setBackgroundResource(R.drawable.animation);
+//        final ImageView btn16 = (ImageView) findViewById(R.id.imageButton16);
+//        btn16.setBackgroundResource(R.drawable.animation);
+//    }
 //        btn01.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

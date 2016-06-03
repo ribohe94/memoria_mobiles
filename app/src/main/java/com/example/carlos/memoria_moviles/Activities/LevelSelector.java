@@ -14,28 +14,56 @@ public class LevelSelector extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_selector);
-
         OnclickDelButton(R.id.btnNivel1);
+        OnclickDelButton(R.id.btnNivel2);
+        OnclickDelButton(R.id.btnNivel3);
+        OnclickDelButton(R.id.btnNivel4);
+        OnclickDelButton(R.id.btnNivel5);
+        OnclickDelButton(R.id.btnNivel6);
     }
     public void OnclickDelButton(int ref) {
-
-        // Ejemplo  OnclickDelButton(R.id.MiButton);
-        // 1 Doy referencia al Button
         View view =findViewById(ref);
         Button miButton = (Button) view;
-        //  final String msg = miButton.getText().toString();
-        // 2.  Programar el evento onclick
         miButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                // if(msg.equals("Texto")){Mensaje("Texto en el botón ");};
                 switch (v.getId()) {
-
-                    case R.id.btnNivel1:
+                    case R.id.btnNivel1:{
                         Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
+                        intento.putExtra("nivel",1);
                         startActivity(intento);
                         break;
-
+                    }
+                    case R.id.btnNivel2:{
+                        Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
+                        intento.putExtra("nivel",2);
+                        startActivity(intento);
+                        break;
+                    }
+                    case R.id.btnNivel3:{
+                        Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
+                        intento.putExtra("nivel",3);
+                        startActivity(intento);
+                        break;
+                    }
+                    case R.id.btnNivel4:{
+                        Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
+                        intento.putExtra("nivel",4);
+                        startActivity(intento);
+                        break;
+                    }
+                    case R.id.btnNivel5:{
+                        Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
+                        intento.putExtra("nivel",5);
+                        startActivity(intento);
+                        break;
+                    }
+                    case R.id.btnNivel6:{
+                        Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
+                        intento.putExtra("nivel",6);
+                        startActivity(intento);
+                        break;
+                    }
                     default:break; }// fin de casos
             }// fin del onclick
         });
