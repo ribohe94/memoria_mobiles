@@ -14,11 +14,25 @@
     tools:showIn="@layout/activity_jugar">
 
 
-    <TableLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ButtonTable">
+        android:layout_height="match_parent">
 
-    </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ButtonTable"
+            android:layout_row="1"
+            android:layout_column="0">
+
+        </TableLayout>
+
+        <Chronometer
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cronometro"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
 
 </LinearLayout>

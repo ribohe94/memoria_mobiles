@@ -1,13 +1,12 @@
 package com.example.carlos.memoria_moviles.Activities;
 
-import android.annotation.TargetApi;
 import android.graphics.drawable.AnimationDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -29,38 +28,52 @@ public class ActividadJugar extends AppCompatActivity {
         switch(nivel){
             case 1:{
                 crearNivel(2,2);
+                startChronometer();
                 //animacion
                 break;
             }
             case 2:{
                 crearNivel(3,3);
+                startChronometer();
                 break;
             }
             case 3:{
                 crearNivel(4,4);
+                startChronometer();
                 break;
             }
             case 4:{
                 crearNivel(5,5);
+                startChronometer();
                 break;
             }
             case 5:{
                 crearNivel(6,6);
+                startChronometer();
                 break;
             }
             case 6:{
                 crearNivel(7,7);
+                startChronometer();
                 break;
             }
             default:{
                 Mensaje("Error al seleccionar nivel");
                 break;
             }
-
         }
+
         //configurarClickListeners();
 
     }
+    public void startChronometer() {
+        ((Chronometer) findViewById(R.id.cronometro)).start();
+    }
+
+    public void stopChronometer() {
+        ((Chronometer) findViewById(R.id.cronometro)).stop();
+    }
+
     private void crearNivel(int TableRows, int TableCols) {
         TableLayout table=(TableLayout) findViewById(R.id.ButtonTable);
         for(int row=0;row<TableRows;row++){
@@ -76,7 +89,6 @@ public class ActividadJugar extends AppCompatActivity {
                         TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.MATCH_PARENT,
                         1.0f));
-//                newButton.setId(Integer.parseInt("@+id/"+row+" "+col));
                 configurarCarta(newButton);
                 newRow.addView(newButton);
 
@@ -84,13 +96,10 @@ public class ActividadJugar extends AppCompatActivity {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void configurarCarta(final Button newButton) {
-        newButton.setPadding(0,0,0,0);
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Mensaje(String.valueOf(newButton.getId()));
             }
         });
     }
