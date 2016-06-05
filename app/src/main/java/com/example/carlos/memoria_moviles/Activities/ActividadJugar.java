@@ -53,6 +53,8 @@ public class ActividadJugar extends AppCompatActivity {
             case 1: {
                 rows = 2;
                 cols = 2;
+                buildNameArray();
+                buildNumArray(arrayCardNames);
                 crearNivel(2, 2);
                 startChronometer();
                 //animacion
@@ -61,6 +63,8 @@ public class ActividadJugar extends AppCompatActivity {
             case 2: {
                 rows = 3;
                 cols = 4;
+                buildNameArray();
+                buildNumArray(arrayCardNames);
                 crearNivel(3, 4);
                 startChronometer();
                 break;
@@ -68,6 +72,8 @@ public class ActividadJugar extends AppCompatActivity {
             case 3: {
                 rows = 4;
                 cols = 4;
+                buildNameArray();
+                buildNumArray(arrayCardNames);
                 crearNivel(4, 4);
                 startChronometer();
                 break;
@@ -75,6 +81,8 @@ public class ActividadJugar extends AppCompatActivity {
             case 4: {
                 rows = 5;
                 cols = 6;
+                buildNameArray();
+                buildNumArray(arrayCardNames);
                 crearNivel(5, 6);
                 startChronometer();
                 break;
@@ -82,6 +90,8 @@ public class ActividadJugar extends AppCompatActivity {
             case 5: {
                 rows = 6;
                 cols = 6;
+                buildNameArray();
+                buildNumArray(arrayCardNames);
                 crearNivel(6, 6);
                 startChronometer();
                 break;
@@ -89,6 +99,8 @@ public class ActividadJugar extends AppCompatActivity {
             case 6: {
                 rows = 7;
                 cols = 8;
+                buildNameArray();
+                buildNumArray(arrayCardNames);
                 crearNivel(7, 8);
                 startChronometer();
                 break;
@@ -104,8 +116,6 @@ public class ActividadJugar extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-        buildNameArray();
-        buildNumArray(arrayCardNames);
 
     }
 
@@ -130,38 +140,39 @@ public class ActividadJugar extends AppCompatActivity {
             table.addView(newRow);
             for (int col = 0; col < TableCols; col++) {
                 ImageButton newImgBtn = new ImageButton(this); // Nuevo imagebutton
-                Carta newCarta = new Carta(false, String.valueOf(row) + String.valueOf(col), newImgBtn); // Se crea la carta
+                Carta newCarta = new Carta(false, row, col, newImgBtn); // Se crea la carta
                 arrayCartas.add(newCarta); // Agregamos la carta al array
                 newCarta.getButton().setLayoutParams(new TableRow.LayoutParams(
                         300,
                         450,
                         1.0f));
-                configurarCarta(newCarta.getButton());
+                configurarCarta(newCarta);
                 newRow.addView(newCarta.getButton());
             }
         }
     }
 
-    private void configurarCarta(final ImageButton newButton) {
-        newButton.setBackgroundResource(R.drawable.animation);
-        newButton.setOnClickListener(new View.OnClickListener() {
+    private void configurarCarta(final Carta carta) {
+        if (counter < (rows * cols) / 2) {
+            carta.setId(arrayNumCartasShuffled.get(counter++));
+        } else {
+            Collections.shuffle(arrayNumCartasShuffled);
+            counter = 0;
+            carta.setId(arrayNumCartasShuffled.get(counter++));
+        }
+        carta.getButton().setBackgroundResource(R.drawable.animation);
+        carta.getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*Nota: Necesita API 21 como minimo*/
                 CustomADHandler cadh = new CustomADHandler((AnimationDrawable) getResources().getDrawable(R.drawable.animation, null)) {
                     @Override
                     public void onAnimationFinish() {
-                        if (counter < (rows * cols) / 2) {
-                            newButton.setBackgroundResource(arrayNumCartasShuffled.get(counter++));
-                        } else {
-                            Collections.shuffle(arrayNumCartasShuffled);
-                            counter = 0;
-                            newButton.setBackgroundResource(arrayNumCartasShuffled.get(counter++));
-                        }
+                        carta.getButton().setBackgroundResource(carta.getId());
                     }
                 };
                 /*Nota: Necesita API 16 como minimo*/
-                newButton.setBackground(cadh);
+                carta.getButton().setBackground(cadh);
                 cadh.start();
             }
         });
@@ -171,9 +182,18 @@ public class ActividadJugar extends AppCompatActivity {
 
     }
 
-    public Carta encontrarCarta(String row, String col) {
+    public Carta encontrarCartaRowCol(int row, int col) {
         for (int i = 0; i < arrayCartas.size(); i++) {
-            if (arrayCartas.get(i).getId() == row + col) {
+            if (arrayCartas.get(i).getRow() == row && arrayCartas.get(i).getCol() == col) {
+                return arrayCartas.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Carta encontrarCartaBtnId(int BtnId) {
+        for (int i = 0; i < arrayCartas.size(); i++) {
+            if (arrayCartas.get(i).getButton().getId() == BtnId) {
                 return arrayCartas.get(i);
             }
         }

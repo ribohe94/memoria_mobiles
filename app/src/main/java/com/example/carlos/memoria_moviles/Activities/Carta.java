@@ -8,9 +8,10 @@ import android.widget.ImageButton;
 public class Carta {
 
 
-    public Carta(boolean faceUp, String id, ImageButton button) {
+    public Carta(boolean faceUp, int row, int col, ImageButton button) {
         this.faceUp = faceUp;
-        this.id = id;
+        this.row = row;
+        this.col = col;
         this.button = button;
     }
 
@@ -22,12 +23,28 @@ public class Carta {
         this.faceUp = faceUp;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
     }
 
     public ImageButton getButton() {
@@ -39,7 +56,10 @@ public class Carta {
     }
 
     private boolean faceUp;
-    private String id;
+    private int id;
+    private int row;
+    private int col;
     private ImageButton button;
+
 
 }
