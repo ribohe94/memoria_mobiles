@@ -35,6 +35,8 @@ public class ActividadJugar extends AppCompatActivity {
     private int counter = 0;
     private int rows;
     private int cols;
+    boolean shuffled = false;
+    boolean victoria = false;
     int nivel = 0;
 
     /**
@@ -145,19 +147,71 @@ public class ActividadJugar extends AppCompatActivity {
                 ImageButton newImgBtn = new ImageButton(this); // Nuevo imagebutton
                 ImageButton newImgBtnReverse = new ImageButton(this); // Nuevo imagebutton Reverso
                 newImgBtnReverse.setBackgroundResource(R.drawable.anim_01);
-                Carta newCarta = new Carta(false, row, col, newImgBtn, newImgBtnReverse); // Se crea la carta
-                arrayCartas.add(newCarta); // Agregamos la carta al array
-                newImgBtn.setLayoutParams(new TableRow.LayoutParams(
-                        300,
-                        450,
-                        1.0f));
-                newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
-                        300,
-                        450,
-                        1.0f));
-
-
                 ViewAnimator va = new ViewAnimator(this);
+                Carta newCarta = new Carta(false, row, col, newImgBtn, newImgBtnReverse, va); // Se crea la carta
+                arrayCartas.add(newCarta); // Agregamos la carta al array
+                if (nivel==1) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            300,
+                            450,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            300,
+                            450,
+                            1.0f));
+                }
+                if (nivel==2) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            200,
+                            350,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            200,
+                            350,
+                            1.0f));
+                }
+                if (nivel==3) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            100,
+                            250,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            150,
+                            250,
+                            1.0f));
+                }
+                if (nivel==4) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            100,
+                            250,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            150,
+                            250,
+                            1.0f));
+                }
+                if (nivel==5) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            150,
+                            250,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            150,
+                            250,
+                            1.0f));
+                }
+                if (nivel==6) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            130,
+                            200,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            130,
+                            200,
+                            1.0f));
+                }
+
+
                 va.addView(newImgBtnReverse);
                 va.addView(newImgBtn);
                 newRow.addView(va);
@@ -170,12 +224,17 @@ public class ActividadJugar extends AppCompatActivity {
     }
 
     private void configurarCarta(final Carta carta, final ViewAnimator va) {
-        if (counter < (rows * cols) / 2) {
+        if (counter < (rows * cols) / 2 && !shuffled) {
             carta.setId(arrayNumCartasShuffled.get(counter++));
         } else {
-            Collections.shuffle(arrayNumCartasShuffled);
-            counter = 0;
-            carta.setId(arrayNumCartasShuffled.get(counter++));
+            if (!shuffled) {
+                Collections.shuffle(arrayNumCartasShuffled);
+                counter = 0;
+                carta.setId(arrayNumCartasShuffled.get(counter++));
+                shuffled = true;
+            } else {
+                carta.setId(arrayNumCartasShuffled.get(counter++));
+            }
         }
         carta.getButton().setBackgroundResource(carta.getId());
         carta.getButtonReverse().setOnClickListener(new View.OnClickListener() {
@@ -183,11 +242,31 @@ public class ActividadJugar extends AppCompatActivity {
             public void onClick(View v) {
 
                 AnimationFactory.flipTransition(va, AnimationFactory.FlipDirection.LEFT_RIGHT);
+                carta.setFaceUp(true);
 
-                if (carta.isFaceUp()) {
-                    carta.setFaceUp(false);
+                if (heap.isEmpty()){
+                    heap.add(carta);
                 } else {
-                    carta.setFaceUp(true);
+                    if (heap.get(0).getId() == carta.getId()){
+                        heap.get(0).getButton().setOnClickListener(null);
+                        carta.getButton().setOnClickListener(null);
+                        heap.clear();
+                    } else {
+                        AnimationFactory.flipTransition(va, AnimationFactory.FlipDirection.LEFT_RIGHT);
+                        carta.setFaceUp(false);
+                        AnimationFactory.flipTransition(heap.get(0).getViewAnimator(), AnimationFactory.FlipDirection.LEFT_RIGHT);
+                        heap.get(0).setFaceUp(false);
+                        heap.clear();
+                    }
+                }
+                boolean flag = true;
+                for (int i = 0; i < arrayCartas.size(); i++) {
+                    if (!arrayCartas.get(i).isFaceUp()) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    Mensaje("Victoria!!!");
                 }
             }
         });
@@ -196,12 +275,10 @@ public class ActividadJugar extends AppCompatActivity {
             public void onClick(View v) {
 
                 AnimationFactory.flipTransition(va, AnimationFactory.FlipDirection.LEFT_RIGHT);
+                carta.setFaceUp(false);
 
-                if (carta.isFaceUp()) {
-                    carta.setFaceUp(false);
-                } else {
-                    carta.setFaceUp(true);
-                }
+                heap.clear();
+
             }
         });
     }
@@ -224,6 +301,8 @@ public class ActividadJugar extends AppCompatActivity {
             }
         }
     }
+
+
 
     public void flipCard(Carta carta) {
 

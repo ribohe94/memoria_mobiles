@@ -1,6 +1,7 @@
 package com.example.carlos.memoria_moviles.Activities;
 
 import android.widget.ImageButton;
+import android.widget.ViewAnimator;
 
 /**
  * Created by Riccardo on 04/06/2016.
@@ -8,12 +9,13 @@ import android.widget.ImageButton;
 public class Carta {
 
 
-    public Carta(boolean faceUp, int row, int col, ImageButton button, ImageButton buttonReverse) {
+    public Carta(boolean faceUp, int row, int col, ImageButton button, ImageButton buttonReverse, ViewAnimator viewAnimator) {
         this.faceUp = faceUp;
         this.row = row;
         this.col = col;
         this.button = button;
         this.buttonReverse = buttonReverse;
+        this.viewAnimator = viewAnimator;
         matched = false;
     }
 
@@ -73,6 +75,14 @@ public class Carta {
         this.buttonReverse = buttonReverse;
     }
 
+    public ViewAnimator getViewAnimator() {
+        return viewAnimator;
+    }
+
+    public void setViewAnimator(ViewAnimator viewAnimator) {
+        this.viewAnimator = viewAnimator;
+    }
+
     private boolean faceUp;
     private boolean matched;
     private int id;
@@ -80,6 +90,7 @@ public class Carta {
     private int col;
     private ImageButton button;
     private ImageButton buttonReverse;
+    private ViewAnimator viewAnimator;
 
 
 }
