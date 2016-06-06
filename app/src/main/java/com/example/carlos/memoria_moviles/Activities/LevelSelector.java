@@ -30,7 +30,6 @@ public class LevelSelector extends AppCompatActivity {
         OnclickDelButton(R.id.btnNivel3);
         OnclickDelButton(R.id.btnNivel4);
         OnclickDelButton(R.id.btnNivel5);
-        OnclickDelButton(R.id.btnNivel6);
     }
     public void OnclickDelButton(int ref) {
         View view =findViewById(ref);
@@ -66,12 +65,6 @@ public class LevelSelector extends AppCompatActivity {
                     case R.id.btnNivel5:{
                         Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
                         intento.putExtra("nivel",5);
-                        startActivity(intento);
-                        break;
-                    }
-                    case R.id.btnNivel6:{
-                        Intent intento = new Intent(getApplicationContext(), ActividadJugar.class);
-                        intento.putExtra("nivel",6);
                         startActivity(intento);
                         break;
                     }

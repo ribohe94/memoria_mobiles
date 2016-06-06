@@ -149,14 +149,66 @@ public class ActividadJugar extends AppCompatActivity {
                 ViewAnimator va = new ViewAnimator(this);
                 Carta newCarta = new Carta(false, row, col, newImgBtn, newImgBtnReverse, va); // Se crea la carta
                 arrayCartas.add(newCarta); // Agregamos la carta al array
-                newImgBtn.setLayoutParams(new TableRow.LayoutParams(
-                        150,
-                        250,
-                        1.0f));
-                newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
-                        150,
-                        250,
-                        1.0f));
+                if (nivel==1) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            300,
+                            450,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            300,
+                            450,
+                            1.0f));
+                }
+                if (nivel==2) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            200,
+                            350,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            200,
+                            350,
+                            1.0f));
+                }
+                if (nivel==3) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            100,
+                            250,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            150,
+                            250,
+                            1.0f));
+                }
+                if (nivel==4) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            100,
+                            250,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            150,
+                            250,
+                            1.0f));
+                }
+                if (nivel==5) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            150,
+                            250,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            150,
+                            250,
+                            1.0f));
+                }
+                if (nivel==6) {
+                    newImgBtn.setLayoutParams(new TableRow.LayoutParams(
+                            130,
+                            200,
+                            1.0f));
+                    newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                            130,
+                            200,
+                            1.0f));
+                }
 
 
                 va.addView(newImgBtnReverse);
