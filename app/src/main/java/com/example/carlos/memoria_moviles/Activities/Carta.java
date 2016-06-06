@@ -8,11 +8,21 @@ import android.widget.ImageButton;
 public class Carta {
 
 
-    public Carta(boolean faceUp, int row, int col, ImageButton button) {
+    public Carta(boolean faceUp, int row, int col, ImageButton button, ImageButton buttonReverse) {
         this.faceUp = faceUp;
         this.row = row;
         this.col = col;
         this.button = button;
+        this.buttonReverse = buttonReverse;
+        matched = false;
+    }
+
+    public boolean isMatched() {
+        return matched;
+    }
+
+    public void setMatched(boolean matched) {
+        this.matched = matched;
     }
 
     public boolean isFaceUp() {
@@ -55,11 +65,21 @@ public class Carta {
         this.button = button;
     }
 
+    public ImageButton getButtonReverse() {
+        return buttonReverse;
+    }
+
+    public void setButtonReverse(ImageButton buttonReverse) {
+        this.buttonReverse = buttonReverse;
+    }
+
     private boolean faceUp;
+    private boolean matched;
     private int id;
     private int row;
     private int col;
     private ImageButton button;
+    private ImageButton buttonReverse;
 
 
 }

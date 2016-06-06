@@ -21,6 +21,7 @@
     <item android:drawable="@drawable/anim_17" android:duration="10" />
     <item android:drawable="@drawable/anim_18" android:duration="10" />
     <item android:drawable="@drawable/anim_19" android:duration="10" />
+    <item android:drawable="@drawable/anim_20" android:duration="10" />
     <item android:drawable="@drawable/anim_21" android:duration="10" />
     <item android:drawable="@drawable/anim_22" android:duration="10" />
     <item android:drawable="@drawable/anim_23" android:duration="10" />

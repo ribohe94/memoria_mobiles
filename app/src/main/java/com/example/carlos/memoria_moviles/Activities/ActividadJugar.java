@@ -10,11 +10,12 @@ import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
 
-import com.example.carlos.memoria_moviles.Control.CustomADHandler;
 import com.example.carlos.memoria_moviles.R;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.tekle.oss.android.animation.AnimationFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class ActividadJugar extends AppCompatActivity {
     private ArrayList<String> arrayCardNames;
     private ArrayList<Integer> arrayNumCartas;
     private ArrayList<Integer> arrayNumCartasShuffled;
+    private ArrayList<Carta> heap;
     private int counter = 0;
     private int rows;
     private int cols;
@@ -48,6 +50,7 @@ public class ActividadJugar extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Bundle bundle = getIntent().getExtras();
+        heap = new ArrayList<>();
         nivel = bundle.getInt("nivel");
         switch (nivel) {
             case 1: {
@@ -140,19 +143,33 @@ public class ActividadJugar extends AppCompatActivity {
             table.addView(newRow);
             for (int col = 0; col < TableCols; col++) {
                 ImageButton newImgBtn = new ImageButton(this); // Nuevo imagebutton
-                Carta newCarta = new Carta(false, row, col, newImgBtn); // Se crea la carta
+                ImageButton newImgBtnReverse = new ImageButton(this); // Nuevo imagebutton Reverso
+                newImgBtnReverse.setBackgroundResource(R.drawable.anim_01);
+                Carta newCarta = new Carta(false, row, col, newImgBtn, newImgBtnReverse); // Se crea la carta
                 arrayCartas.add(newCarta); // Agregamos la carta al array
-                newCarta.getButton().setLayoutParams(new TableRow.LayoutParams(
+                newImgBtn.setLayoutParams(new TableRow.LayoutParams(
                         300,
                         450,
                         1.0f));
-                configurarCarta(newCarta);
-                newRow.addView(newCarta.getButton());
+                newImgBtnReverse.setLayoutParams(new TableRow.LayoutParams(
+                        300,
+                        450,
+                        1.0f));
+
+
+                ViewAnimator va = new ViewAnimator(this);
+                va.addView(newImgBtnReverse);
+                va.addView(newImgBtn);
+                newRow.addView(va);
+                configurarCarta(newCarta, va);
+
+
+
             }
         }
     }
 
-    private void configurarCarta(final Carta carta) {
+    private void configurarCarta(final Carta carta, final ViewAnimator va) {
         if (counter < (rows * cols) / 2) {
             carta.setId(arrayNumCartasShuffled.get(counter++));
         } else {
@@ -160,25 +177,59 @@ public class ActividadJugar extends AppCompatActivity {
             counter = 0;
             carta.setId(arrayNumCartasShuffled.get(counter++));
         }
-        carta.getButton().setBackgroundResource(R.drawable.animation);
+        carta.getButton().setBackgroundResource(carta.getId());
+        carta.getButtonReverse().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AnimationFactory.flipTransition(va, AnimationFactory.FlipDirection.LEFT_RIGHT);
+
+                if (carta.isFaceUp()) {
+                    carta.setFaceUp(false);
+                } else {
+                    carta.setFaceUp(true);
+                }
+            }
+        });
         carta.getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Nota: Necesita API 21 como minimo*/
-                CustomADHandler cadh = new CustomADHandler((AnimationDrawable) getResources().getDrawable(R.drawable.animation, null)) {
-                    @Override
-                    public void onAnimationFinish() {
-                        carta.getButton().setBackgroundResource(carta.getId());
-                    }
-                };
-                /*Nota: Necesita API 16 como minimo*/
-                carta.getButton().setBackground(cadh);
-                cadh.start();
+
+                AnimationFactory.flipTransition(va, AnimationFactory.FlipDirection.LEFT_RIGHT);
+
+                if (carta.isFaceUp()) {
+                    carta.setFaceUp(false);
+                } else {
+                    carta.setFaceUp(true);
+                }
             }
         });
     }
 
-    private void configurarFondos() {
+    public void addToHeap(Carta carta) {
+        if (heap.isEmpty()) {
+            heap.add(carta);
+        } else {
+            if(carta == heap.get(0)) {
+                carta.setMatched(true);
+                heap.get(0).setMatched(true);
+                carta.getButton().setOnClickListener(null);
+                heap.get(0).getButton().setOnClickListener(null);
+                AddPoints(100);
+                heap.clear();
+            } else {
+                flipCard(heap.get(0));
+                flipCard(carta);
+                heap.clear();
+            }
+        }
+    }
+
+    public void flipCard(Carta carta) {
+
+    }
+
+    public void AddPoints(int points) {
 
     }
 
