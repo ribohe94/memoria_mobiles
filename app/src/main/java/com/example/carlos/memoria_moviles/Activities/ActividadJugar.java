@@ -36,6 +36,7 @@ public class ActividadJugar extends AppCompatActivity {
     private int rows;
     private int cols;
     boolean shuffled = false;
+    boolean victoria = false;
     int nivel = 0;
 
     /**
@@ -257,6 +258,15 @@ public class ActividadJugar extends AppCompatActivity {
                         heap.get(0).setFaceUp(false);
                         heap.clear();
                     }
+                }
+                boolean flag = true;
+                for (int i = 0; i < arrayCartas.size(); i++) {
+                    if (!arrayCartas.get(i).isFaceUp()) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    Mensaje("Victoria!!!");
                 }
             }
         });
