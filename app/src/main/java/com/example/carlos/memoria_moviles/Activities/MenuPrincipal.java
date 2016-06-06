@@ -23,37 +23,12 @@ public class MenuPrincipal extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
-//Botón jugar
-        Button btnJugar = (Button) findViewById(R.id.Jugar);
-        btnJugar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent intento = new Intent(getApplicationContext(), LevelSelector.class);
-                startActivity(intento);
-            }
-
-        });
-//Fin del bonton jugar
-
-//Botón MultiJugador
-        Button btnMultiJugador = (Button) findViewById(R.id.MultiJugador);
-        btnMultiJugador.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent multijugador = new Intent(getApplicationContext(), MultiJugador.class);
-                startActivity(multijugador);
-            }
-
-        });
-//Fin del bonton MultiJugador
-
 //Botón Puntuaciones
         Button btnPuntuaciones = (Button) findViewById(R.id.Puntuaciones);
         btnPuntuaciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent puntuaciones = new Intent(getApplicationContext(), Puntuaciones.class);
+                Intent puntuaciones = new Intent(getApplicationContext(), Opciones.class);
                 startActivity(puntuaciones);
             }
 

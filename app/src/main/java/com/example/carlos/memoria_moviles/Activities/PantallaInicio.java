@@ -12,9 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.carlos.memoria_moviles.Control.Base;
 import com.example.carlos.memoria_moviles.R;
 
-public class PantallaInicio extends AppCompatActivity {
+public class PantallaInicio extends Base {
 
     protected TextView customFont;
     @Override
@@ -23,7 +24,6 @@ public class PantallaInicio extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_inicio);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +32,8 @@ public class PantallaInicio extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //CrearBD();
 
         //Botón jugar
         Button btnJugar = (Button) findViewById(R.id.juego);
@@ -64,6 +66,8 @@ public class PantallaInicio extends AppCompatActivity {
         Typeface fonts=Typeface.createFromAsset(getAssets(),"Pacifico.ttf");
         customFont.setGravity(Gravity.CENTER);
         customFont.setTypeface(fonts);
+
+
     }
 
 }

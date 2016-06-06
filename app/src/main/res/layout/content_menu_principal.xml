@@ -13,49 +13,23 @@
     tools:showIn="@layout/activity_menu_principal"
     android:background="@drawable/proyecto_memoria_bg">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:id="@+id/Puntuaciones"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_puntuaciones"
+        android:layout_above="@+id/Salir"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp" />
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="75dp"
-            android:id="@+id/Jugar"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_jugar"
-            android:layout_marginBottom="40px"
-            android:layout_marginTop="40px" />
-
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="75dp"
-            android:id="@+id/MultiJugador"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_multi_jugador"
-            android:layout_marginBottom="40px" />
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="75dp"
-            android:id="@+id/Puntuaciones"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_puntuaciones"
-            android:layout_marginBottom="40px" />
-
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="75dp"
-            android:id="@+id/Opciones"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_opciones"
-            android:layout_marginBottom="40px" />
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="75dp"
-            android:id="@+id/Salir"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_salir"/>
-    </LinearLayout>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:id="@+id/Salir"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_salir"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="171dp" />
 </RelativeLayout>

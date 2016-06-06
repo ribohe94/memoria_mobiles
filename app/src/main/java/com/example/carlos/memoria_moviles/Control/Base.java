@@ -2,6 +2,7 @@ package com.example.carlos.memoria_moviles.Control;
 
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 /**
@@ -10,9 +11,6 @@ import android.widget.Toast;
 public class Base extends AppCompatActivity {
     //Colocar en la clase Base
     DBAdapter db;
-
-    public Base() {
-    }
 
     public void CrearBD() {
         db = new DBAdapter(this);
@@ -33,11 +31,13 @@ public class Base extends AppCompatActivity {
     }
     public void ObtenerDatos() {
         //--cargamos todos los datos---
+        String[] COLUMNAs;
         db.open();
         Cursor c = db.CargarTodosLosDatos();
         if (c.moveToFirst())
         {
             do {
+
                 MostarDato(c);
             } while (c.moveToNext());
         }
@@ -62,11 +62,20 @@ public class Base extends AppCompatActivity {
             Mensaje("Fallo al intentar borrar");
         db.close();
     }
+    int i=0;
+    public String[] COLUMNAs= new String[3];
+
     public void MostarDato(Cursor c)
     {
+        if(i==3)
+            i=0;
+        COLUMNAs[i]= c.getString(1)+"  "+c.getString(3);
+
         Mensaje("foto: " + c.getString(0) + "\n" +
                 "Nombre: " + c.getString(1) + "\n" +
                 "Correo: " + c.getString(2) + "\n" +
                 "Puntuacion:  " + c.getString(3));
+
+        i++;
     }
 }
