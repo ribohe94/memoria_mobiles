@@ -23,9 +23,9 @@ public class UsuarioBase {
     private String foto;
     private String nombre;
     private String correo;
-    private int puntuacion;
+    private long puntuacion;
 
-    public UsuarioBase(String foto, String nombre, String correo, int puntuacion) {
+    public UsuarioBase(String foto, String nombre, String correo, long puntuacion) {
         this.foto = foto;
         this.nombre = nombre;
         this.correo = correo;
@@ -67,11 +67,11 @@ public class UsuarioBase {
         this.correo = correo;
     }
 
-    public int getPuntuacion() {
+    public long getPuntuacion() {
         return puntuacion;
     }
 
-    public void setPuntuacion(int puntuacion) {
+    public void setPuntuacion(long puntuacion) {
         this.puntuacion = puntuacion;
     }
 }

@@ -2,6 +2,7 @@ package com.example.carlos.memoria_moviles.Activities;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.TableRow;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
+import com.example.carlos.memoria_moviles.Control.Base;
+import com.example.carlos.memoria_moviles.Control.Usuario;
+import com.example.carlos.memoria_moviles.Control.UsuarioBase;
 import com.example.carlos.memoria_moviles.R;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -24,7 +28,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ActividadJugar extends AppCompatActivity {
+public class ActividadJugar extends Base {
     private int cardId = 0;
     private AnimationDrawable animation;
     private ArrayList<Carta> arrayCartas;
@@ -32,6 +36,7 @@ public class ActividadJugar extends AppCompatActivity {
     private ArrayList<Integer> arrayNumCartas;
     private ArrayList<Integer> arrayNumCartasShuffled;
     private ArrayList<Carta> heap;
+    private Chronometer cronometro;
     private int counter = 0;
     private int rows;
     private int cols;
@@ -51,7 +56,9 @@ public class ActividadJugar extends AppCompatActivity {
         setContentView(R.layout.activity_jugar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        CrearBD();
         Bundle bundle = getIntent().getExtras();
+        cronometro= (Chronometer) findViewById(R.id.cronometro);
         heap = new ArrayList<>();
         nivel = bundle.getInt("nivel");
         switch (nivel) {
@@ -267,7 +274,14 @@ public class ActividadJugar extends AppCompatActivity {
                 }
                 if (flag) {
                     Mensaje("Victoria!!!");
-                }
+                    stopChronometer();
+                    Usuario user= Usuario.getInstance();
+                    if(user.getName()!=null){
+
+                    }
+                    UsuarioBase usuarioNuevo=new UsuarioBase("","Invitado","N/A", SystemClock.elapsedRealtime() - cronometro.getBase());
+                    AgregarDato(usuarioNuevo);
+                    }
             }
         });
         carta.getButton().setOnClickListener(new View.OnClickListener() {
