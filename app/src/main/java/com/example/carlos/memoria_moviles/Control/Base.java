@@ -62,14 +62,22 @@ public class Base extends AppCompatActivity {
             Mensaje("Fallo al intentar borrar");
         db.close();
     }
+
+
+    public void BorrarDatos() {
+        db.open();
+        db.BorraarDatos();
+        db.close();
+    }
+
     int i=0;
-    public String[] COLUMNAs= new String[3];
+    public String[] COLUMNAs= new String[25];
 
     public void MostarDato(Cursor c)
     {
-        if(i==3)
+        if(i==25)
             i=0;
-        COLUMNAs[i]= c.getString(1)+"  "+c.getString(3);
+        COLUMNAs[i]= c.getString(2)+"                                                           "+c.getString(4);
 
         Mensaje("foto: " + c.getString(0) + "\n" +
                 "Nombre: " + c.getString(1) + "\n" +

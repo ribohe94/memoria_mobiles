@@ -85,7 +85,9 @@ public class DBAdapter {
     //---Insertamos un dato en la BD---
     public long insertDato(UsuarioBase user) {
         ContentValues valores = new ContentValues();
+        valores.put(FOTO, user.getFoto());
         valores.put(NOMBRE, user.getNombre());
+        valores.put(CORREO, user.getCorreo());
         valores.put(PUNTUACION, user.getPuntuacion());
         return db.insert(TABLE_NAME, null, valores);
     }
@@ -95,6 +97,9 @@ public class DBAdapter {
         return db.delete(TABLE_NAME, TABLE_ID + "=" + rowId, null) > 0;
     }
 
+    public void BorraarDatos() {
+        db.delete(DATABASE_NAME, null, null);
+    }
     //---Recuperamos todo los datos---
     public Cursor CargarTodosLosDatos() {
         return db.query(TABLE_NAME, new String[]{TABLE_ID, FOTO, NOMBRE,

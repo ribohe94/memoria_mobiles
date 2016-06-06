@@ -1,12 +1,15 @@
 package com.example.carlos.memoria_moviles.Activities;
 
+import android.content.DialogInterface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -275,12 +278,7 @@ public class ActividadJugar extends Base {
                 if (flag) {
                     Mensaje("Victoria!!!");
                     stopChronometer();
-                    Usuario user= Usuario.getInstance();
-                    if(user.getName()!=null){
-
-                    }
-                    UsuarioBase usuarioNuevo=new UsuarioBase("","Invitado","N/A", SystemClock.elapsedRealtime() - cronometro.getBase());
-                    AgregarDato(usuarioNuevo);
+                    DemeTexto(findViewById(R.id.ButtonTable));
                     }
             }
         });
@@ -385,7 +383,35 @@ public class ActividadJugar extends Base {
             }
         }
     }
+    static EditText texto;
+    public void DemeTexto(View view) {
+        // Uso:   DemeTexto(findViewById(R.id.btnNombreBoton))
+        texto = new EditText(view.getContext());
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
+        builder1.setMessage("Digite su Nombre:");
+        texto.setText("Dato");
+        texto.selectAll();
+        builder1.setView(texto);
 
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        UsuarioBase usuarioNuevo=new UsuarioBase("",texto.toString(),"N/A", SystemClock.elapsedRealtime() - cronometro.getBase());
+                        AgregarDato(usuarioNuevo);
+                    }
+                });
+
+        builder1.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Mensaje("Cancelado");
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
 //   @Override
 //   public void onStart() {
 //       super.onStart();
