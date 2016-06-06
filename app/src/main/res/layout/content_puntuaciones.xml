@@ -12,141 +12,20 @@
     tools:context=".Activities.Puntuaciones"
     tools:showIn="@layout/activity_puntuaciones">
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" />
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@id/android:empty"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/scrollView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:id="@+id/tabla">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jugador"
-                android:textSize="20dp"
-                android:id="@+id/thJugador"
-                android:paddingRight="80dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tiempo"
-                android:textSize="20dp"
-                android:id="@+id/thTiempo"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Puntuación"
-                android:textSize="20dp"
-                android:id="@+id/thPuntuacion"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="10dp"/>
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ricardo B"
-                android:textSize="20dp"
-                android:id="@+id/tdJugador1"
-                android:paddingRight="80dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="45 segs"
-                android:textSize="20dp"
-                android:id="@+id/tdTiempo1"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="200 pts"
-                android:textSize="20dp"
-                android:id="@+id/tdPuntuacion1"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="20dp"/>
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rebecca C"
-                android:textSize="20dp"
-                android:id="@+id/tdJugador2"
-                android:paddingRight="80dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="65 segs"
-                android:textSize="20dp"
-                android:id="@+id/tdTiempo2"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="90 pts"
-                android:textSize="20dp"
-                android:id="@+id/tdPuntuacion2"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="20dp"/>
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Carlos H"
-                android:textSize="20dp"
-                android:id="@+id/tdJugador3"
-                android:paddingRight="80dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="120 segs"
-                android:textSize="20dp"
-                android:id="@+id/tdTiempo3"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="50 pts"
-                android:textSize="20dp"
-                android:id="@+id/tdPuntuacion3"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="20dp"/>
-        </TableRow>
+        android:layout_height="wrap_content"
+        android:text="@string/lista_vacia" />
     </LinearLayout>
 </RelativeLayout>

@@ -8,12 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carlos.memoria_moviles.R;
 
 public class MenuPrincipal extends AppCompatActivity {
-
+    protected TextView customFont;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,17 +60,7 @@ public class MenuPrincipal extends AppCompatActivity {
         });
 //Fin del bonton Puntuaciones
 
-//Botón Opciones
-        Button btnOpciones = (Button) findViewById(R.id.Opciones);
-        btnOpciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent opciones = new Intent(getApplicationContext(), Opciones.class);
-                startActivity(opciones);
-            }
 
-        });
-//Fin del bonton Opciones
 
 //Botón Salir
         Button btnSalir = (Button) findViewById(R.id.Salir);

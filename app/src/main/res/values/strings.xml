@@ -17,7 +17,7 @@
     <string name="pref_description_social_recommendations">Recommendations for people to contact
         based on your message history
     </string>
-
+    <string name="lista_vacia">Sin Datos</string>
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
 
@@ -70,4 +70,5 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_level_selector">LevelSelector</string>
+    <string name="title_activity_pantalla_inicio">PantallaInicio</string>
 </resources>
